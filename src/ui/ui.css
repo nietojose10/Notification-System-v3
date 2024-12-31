@@ -1,0 +1,73 @@
+.container-in-layout {
+    padding: 100px 250px 0 250px;
+    transition: all 0.5s;
+}
+
+/******************************************** Dynamic NavBar ************************************/
+nav.navbar.dynamic-navbar {
+    
+    background: linear-gradient(to right, #401f71 0%, #824d74 100%) !important;
+    position: fixed;
+    width: 100%;
+    padding: 14px 0;
+    z-index: 9998;
+    transition: all 0.5s;
+    
+}
+
+/* nav.navbar.dynamic-navbar{
+    margin-left: 250px;
+} */
+
+/* nav.navbar.dynamic-navbar.scrolled {
+    box-shadow: -21.213px 21.213px 30px 0px rgba(158, 158, 158, 0.3);
+    background-color: transparent;
+    transition: all 0.5s;
+}  */
+
+nav.navbar.dynamic-navbar a.navbar-brand {
+    font-weight: 700;
+    width: 55%;
+    color: #fff !important;
+    padding-left: 40px;
+}
+
+nav.navbar.dynamic-navbar .navbar-nav .nav-link {
+    font-weight: 400;
+    color: #fff !important;
+    letter-spacing: 0.8px;
+    padding: 0 25px;
+    font-size: 18px;
+}
+
+nav.navbar.dynamic-navbar .navbar-nav .nav-link:hover {
+    border-bottom: 2px solid #fff;
+    
+}
+
+.dynamic-navbar .container-fluid {
+    padding-right: 3rem;
+    padding-left: 2rem;
+}
+
+nav.navbar.dynamic-navbar .me-auto {
+    padding-left: 100px;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    /* Layout */
+    .container-in-layout {
+        padding: 200px 0 0px 0;
+    }
+}
+
+
+@media screen and (min-width: 1000px) and (max-width: 1500px ) {
+
+    /* Layout */
+    .container-in-layout {
+        padding: 100px 0px 0px 0px;
+    }
+}

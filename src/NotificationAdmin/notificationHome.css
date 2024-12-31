@@ -1,0 +1,56 @@
+.ctn-notification-system-menu {
+    height: 600px;
+    display: flex;
+    align-items: center;
+}
+
+.ctn-notification-system-menu .card-notification-home .card-header {
+    display: flex;
+    align-items: center;
+    background-color: white!important;
+    border: none!important;
+    padding: 20px;
+}
+
+.ctn-notification-system-menu .card-notification-home .icon-frame {
+    /* border: 1px solid black; */
+    box-shadow: 1px 1px 15px rgba(130, 77, 116, 0.429);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.ctn-notification-system-menu .card-notification-home {
+   height: 15rem;
+   /* width: 25rem; */
+   margin-bottom: 1rem;
+   /* background: linear-gradient(to bottom right, #be7b72 0%, #fdaf7b 100%); */
+   /* background: linear-gradient(to bottom right, #be7b72 0%, #824d74 100%); */
+   color: #401F71;
+   /* color: white; */
+   /* border: 2px solid #fff; */
+   border: none;
+   box-shadow: 1px 1px 15px rgba(130, 77, 116, 0.137);
+} 
+
+/* .ctn-notification-system-menu .card-notification-home .card-body {
+    display: flex;
+    align-items: center;
+} */
+
+.card-notification-home .card-title .custom-card-title {
+    font-weight: 600;
+    font-size: 1.7rem;
+}
+
+.card-notification-home .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.ctn-notification-system-menu .card-notification-home:hover {
+    cursor: pointer;
+    transform: scale(1.015);
+    transition: .50s ease-in-out;
+}
