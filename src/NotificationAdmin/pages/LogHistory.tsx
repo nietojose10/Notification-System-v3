@@ -1,6 +1,14 @@
+import { Container } from 'react-bootstrap'
+import { MessagesReport } from '../components/MessagesReport'
+import { NotificationLayout } from '../layout/NotificationLayout'
+import '../LogHistory.css';
 
 export const LogHistory = () => {
   return (
-    <div>LogHistory</div>
+    <NotificationLayout>
+      <Container>
+      <MessagesReport/>
+      </Container>
+    </NotificationLayout>
   )
 }

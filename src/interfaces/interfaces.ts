@@ -1,4 +1,11 @@
 
+export interface User {
+    id: string,
+    name: string,
+    email: string,
+    phoneNumber: string,
+}
+
 export interface MessageType {
     id?: string,
     messageType: string,
@@ -10,10 +17,20 @@ export interface NotificationType {
 }
 
 export interface LogHistory {
-    id: string,
-    message: string,
+    id?: string,
+    message?: string,
     messageType: MessageType,
     notificationType: NotificationType,
-    user?: string,
-    creationDate: Date
+    user?: User,
+    creationDate: string
+}
+
+export interface LogHistoryReport {
+  id?: number,
+  messageType: MessageType,
+  notificationType: NotificationType,
+  creationDate: string,
+  userName: string,
+  email: string,
+  phoneNumber: string
 }

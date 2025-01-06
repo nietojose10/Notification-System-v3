@@ -1,6 +1,13 @@
+import { Container } from 'react-bootstrap';
+import { BroadcastForm, NotificationLayout } from '../';
+import '../broadcastMessage.css';
 
 export const BroadcastMessage = () => {
   return (
-    <div>BroadcastMessage</div>
+    <NotificationLayout>
+      <Container>
+        <BroadcastForm/>
+      </Container>
+    </NotificationLayout>
   )
 }

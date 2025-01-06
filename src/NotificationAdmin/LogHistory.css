@@ -1,0 +1,19 @@
+.ctn-messages-report {
+    /* height: 600px; */
+    height: 37.5rem;
+    max-height: 600px;
+    width: auto;
+    background-color: white;
+}
+
+.ctn-messages-report .ctn-table-placeholder .tbl-placeholder .thead-placeholder  {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ctn-messages-report .ctn-table-placeholder .tbl-placeholder .tbody-placeholder .row {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
