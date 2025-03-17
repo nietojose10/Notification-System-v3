@@ -37,6 +37,17 @@ export const useForm = <T extends FormStateProp>( initialForm: T , initialValida
         });
     }
 
+    const onSelectChange = ( { target }: ChangeEvent<HTMLSelectElement> ) => {
+
+        const { name, value } = target;
+        console.log({ name, value });
+        setFormState({
+            ...formState,
+            [name]: value
+        });
+
+    }
+
     useEffect(() => {
         createValidators();
     }, [formState]);
@@ -74,6 +85,7 @@ export const useForm = <T extends FormStateProp>( initialForm: T , initialValida
     //Methods
     setFormState,
     onInputChange,
+    onSelectChange,
     isFormValid
   }
 }

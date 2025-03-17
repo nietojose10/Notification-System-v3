@@ -1,7 +1,7 @@
 import { Button, Col, Form, Row } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTowerBroadcast } from '@fortawesome/free-solid-svg-icons';
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useForm, useBroadcastMessageStore } from '../../hooks';
 // import { useNavigate } from 'react-router-dom';
 
@@ -29,25 +29,25 @@ const formFields = {
 
 export const BroadcastForm = () => {
 
-    const { category, message, categoryValid, messageValid, formState, onInputChange, isFormValid } = useForm( formFields, formValidations );
+    const { category, message, categoryValid, messageValid, formState, onInputChange, isFormValid, onSelectChange } = useForm( formFields, formValidations );
     const [formSubmitted, setFormSubmitted] = useState(false);
     const { startSendingMessage, isSaving, startLoadingCategories, categories } = useBroadcastMessageStore();
-    const [selectCategories, setSelectCategories] = useState({});
     // const navigate = useNavigate();
   
     useEffect(() => {
         startLoadingCategories();
     }, [])
     
-    const onInputSelectChange = async( { target }: ChangeEvent<HTMLSelectElement> ) => {
+    // const handleSelectChange = async( { target }: ChangeEvent<HTMLSelectElement> ) => {
 
-        const { name, value } = target;
-        setSelectCategories({
-            ...selectCategories,
-            [name]: value
-        });
+    //     const { name, value } = target;
+    //     console.log(category);
+    //     setSelectCategories({
+    //         ...selectCategories,
+    //         [name]: value
+    //     });
 
-    }
+    // }
 
     const handleSubmit = async( e: FormEvent<HTMLFormElement> ) => {
       e.preventDefault();
@@ -70,18 +70,19 @@ export const BroadcastForm = () => {
         <Form onSubmit={handleSubmit}>
             <Row>
             <Form.Group as={Col} lg={12} md={12} sm={12} className="mb-3" controlId="id_category">
-                <Form.Label>Category</Form.Label>
+                <Form.Label>Message Types</Form.Label>
                 <Form.Select 
                   data-testid="category"
                   name="category"
                   value={category}
-                  onChange={onInputSelectChange}
+                  onChange={onSelectChange}
                   isInvalid={ !!categoryValid && formSubmitted }
                 >
                      <option value={''}>Select</option>
                     {
-                        categories?.map( (category) => {
-                            return <option key={category.id} value={ category.messageType.toLowerCase() } >{ category.messageType }</option>
+                        categories?.map( ({id, messageType}) => {
+                          const label = messageType.charAt(0).toUpperCase() + messageType.substring(1);
+                            return <option key={ id } value={ messageType.toLowerCase() } >{ label }</option>
                         })
                     }
                 </Form.Select>

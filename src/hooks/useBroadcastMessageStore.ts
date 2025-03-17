@@ -45,7 +45,8 @@ export const useBroadcastMessageStore = () => {
         try {
             
             const { data } = await nsApi.get('/admin/getMessageTypes');
-            dispatch( onLoadCategories( data.messageTypes ) ); 
+            console.log(data);
+            dispatch( onLoadCategories( data ) ); 
 
         } catch (error) {
             console.log(error);

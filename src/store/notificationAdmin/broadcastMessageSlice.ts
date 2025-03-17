@@ -11,7 +11,7 @@ export const broadcastMessageSlice = createSlice({
         onSavingNotification: ( state ) => {
             state.isSaving = true;
         },
-        onLoadCategories: ( state, { payload }) => {
+        onLoadCategories: ( state, { payload } ) => {
             state.categories = payload;
         },
         onAddMessage: ( state, { payload } ) => {

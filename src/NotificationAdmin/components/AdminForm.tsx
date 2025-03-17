@@ -36,17 +36,17 @@ const formValidations = [
       }
   ];
 
-const categoriesOptions = [
-    { value: 'sports', label: 'Sports' },
-    { value: 'finance', label: 'Finance' },
-    { value: 'movies', label: 'Movies' }
-];
+// const categoriesOptions = [
+//     { value: 'sports', label: 'Sports' },
+//     { value: 'finance', label: 'Finance' },
+//     { value: 'movies', label: 'Movies' }
+// ];
 
-const notificationTypes = [
-    { value: 'sms', label: 'SMS' },
-    { value: 'email', label: 'Email' },
-    { value: 'push notification', label: 'Push Notification' }
-];
+// const notificationTypes = [
+//     { value: 'sms', label: 'SMS' },
+//     { value: 'email', label: 'Email' },
+//     { value: 'push notification', label: 'Push Notification' }
+// ];
 
 export const AdminForm = () => {
 
@@ -56,7 +56,7 @@ export const AdminForm = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const { startSavingUser, isSaving, startLoadingCategories, categories, startLoadingChannels, channels } = useAdminStore();
     const navigate = useNavigate();
-    const [categoriesSelect, setCategoriesSelect] = useState<MultiValue<OptionType>>([]);
+    const [messageTypesSelect, setMessageTypesSelect] = useState<MultiValue<OptionType>>([]);
     const [notificationTypesSelect, setNotificationTypesSelect] = useState<MultiValue<OptionType>>([]);
 
     // const [formValues, setFormValues] = useState({
@@ -71,8 +71,8 @@ export const AdminForm = () => {
     //         });
     // }
 
-    const handleCategoriesChange = ( options: MultiValue<OptionType> ) => {
-        setCategoriesSelect( options );
+    const handleMessageTypesChange = ( options: MultiValue<OptionType> ) => {
+        setMessageTypesSelect( options );
     }
 
     const handleNotificationTypesChange = ( options: MultiValue<OptionType> ) => {
@@ -91,7 +91,7 @@ export const AdminForm = () => {
         setFormSubmitted(true);
         if( !isFormValid ) return;
 
-        const categoriesValues = categoriesSelect.map( data => 
+        const categoriesValues = messageTypesSelect.map( data => 
             data.value
         );
 
@@ -182,16 +182,16 @@ export const AdminForm = () => {
                     <Form.Label>Message Types</Form.Label>
                     <Select<OptionType, true>
                         isMulti
-                        value={ categoriesSelect }
+                        value={ messageTypesSelect }
                         aria-label="categories"
-                        onChange={ handleCategoriesChange }
+                        onChange={ handleMessageTypesChange }
                         options={
-                            // categories.map( data => (
-                            //     { value: data.messageType.toLowerCase(), label: data.messageType }
-                            // ))
-                            categoriesOptions.map( data => (
-                                { value: data.value, label: data.label }
+                            categories.map( ({ messageType}) => (
+                                { value: messageType.toLowerCase(), label: messageType.charAt(0).toUpperCase() + messageType.substring(1) }
                             ))
+                            // categoriesOptions.map( data => (
+                            //     { value: data.value, label: data.label }
+                            // ))
                         }
                         placeholder="Select the subscriptions"
                     />
@@ -206,12 +206,12 @@ export const AdminForm = () => {
                         aria-label="channels"
                         onChange={handleNotificationTypesChange}
                         options={
-                            // channels.map( data => (
-                            //     { value: (data.notificationType).toLowerCase(), label: data.notificationType }
-                            // ))
-                            notificationTypes.map( data => (
-                                { value: data.value, label: data.label }
+                            channels.map( ({ notificationType }) => (
+                                { value: notificationType.toLowerCase(), label: notificationType.charAt(0).toUpperCase() + notificationType.substring(1) }
                             ))
+                            // notificationTypes.map( data => (
+                            //     { value: data.value, label: data.label }
+                            // ))
                         }
                         placeholder="Select the notification types"
                     />

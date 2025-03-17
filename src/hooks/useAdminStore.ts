@@ -33,7 +33,7 @@ export const useAdminStore = () => {
         console.log('Calling startSavingUser');
         try {
             dispatch( onSavingUser() );
-            await nsApi.post('/auth/new',{ name, email, phoneNumber, subscribed, channels });
+            await nsApi.post('/auth/register',{ name, email, phoneNumber, subscribed, channels });
             
             await Toast.fire({ icon: 'success', title: 'User Successfully created.' });
             // dispatch( onClearSavingUser() );
@@ -50,7 +50,8 @@ export const useAdminStore = () => {
         try {
             
             const { data } = await nsApi.get('/admin/getMessageTypes');
-            dispatch( onLoadCategoriesUser( data.messageTypes ) ); 
+            console.log(data);
+            dispatch( onLoadCategoriesUser( data ) ); 
 
         } catch (error) {
             console.log(error);
@@ -61,7 +62,7 @@ export const useAdminStore = () => {
         try {
             
             const { data } = await nsApi.get('/admin/getNotificationTypes');
-            dispatch( onLoadChannelsUser( data.notificationTypes ) );
+            dispatch( onLoadChannelsUser( data ) );
 
         } catch (error) {
             console.log(error);
