@@ -19,16 +19,16 @@ export interface NotificationType {
 export interface LogHistory {
     id?: string,
     message?: string,
-    messageType: MessageType,
-    notificationType: NotificationType,
+    typeMessage: MessageType,
+    channel: NotificationType,
     user?: User,
     creationDate: string
 }
 
 export interface LogHistoryReport {
   id?: number,
-  messageType: MessageType,
-  notificationType: NotificationType,
+  typeMessage: MessageType,
+  channel: NotificationType,
   creationDate: string,
   userName: string,
   email: string,

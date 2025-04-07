@@ -33,10 +33,10 @@ export const BroadcastForm = () => {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const { startSendingMessage, isSaving, startLoadingCategories, categories } = useBroadcastMessageStore();
     // const navigate = useNavigate();
-  
+
     useEffect(() => {
         startLoadingCategories();
-    }, [])
+    }, []);
     
     // const handleSelectChange = async( { target }: ChangeEvent<HTMLSelectElement> ) => {
 

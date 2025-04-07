@@ -1,5 +1,6 @@
-import { useEffect } from 'react';
-import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { useEffect, useMemo, useState } from 'react';
+import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel, 
+        getSortedRowModel, SortingState, useReactTable } from '@tanstack/react-table';
 import { useLogHistoryStore } from '../../hooks';
 // import { format } from 'date-fns';
 import { LogHistoryReport } from '../../interfaces/interfaces';
@@ -9,6 +10,7 @@ export const MessagesReport = () => {
 
     const { startLoadingLogHistory, logHistory, fromLogHistoryToReport } = useLogHistoryStore();
     const placeHoldersCells = Array.from({ length: 12 });
+    const [sorting, setSorting] = useState<SortingState>([]);
 
     useEffect(() => {
       startLoadingLogHistory();
@@ -16,11 +18,11 @@ export const MessagesReport = () => {
 
     const columnHelper = createColumnHelper<LogHistoryReport>();
 
-    const columns = [
-      columnHelper.accessor('messageType', {
+    const columns = useMemo(() => [
+      columnHelper.accessor('typeMessage', {
         header: 'Message Type'
       }),
-      columnHelper.accessor('notificationType', {
+      columnHelper.accessor('channel', {
         header: 'Notification Type'
       }),
       columnHelper.accessor('creationDate', {
@@ -35,63 +37,91 @@ export const MessagesReport = () => {
       columnHelper.accessor('phoneNumber', {
         header: 'Phone Number'
       })
-    ];
+    ]
+    , []);
 
     const table = useReactTable({
-      data: fromLogHistoryToReport(logHistory),
+      data: useMemo(() => fromLogHistoryToReport(logHistory), [logHistory]),
       columns,
-      getCoreRowModel: getCoreRowModel()
+      getCoreRowModel: useMemo(() => getCoreRowModel(), []),
+      getPaginationRowModel: getPaginationRowModel(),
+      getSortedRowModel: getSortedRowModel(),
+      state: {
+        sorting
+      },
+      onSortingChange: setSorting,
     });
 
+    // useEffect(() => {
+    //   console.log("Table has changed");
+    // }, [table])    
+    
   return (
     <div className="ctn-messages-report">
       {
-        ( !logHistory )
+        ( logHistory )
         ? 
-          <Table>
-          <thead>
-            {
-              table.getHeaderGroups().map( headerGroup => (
-                <tr key={headerGroup.id}>
-                  {
-                    headerGroup.headers.map( header => (
-                      <th key={header.id}>
-                        {
-                          header.isPlaceholder
-                          ? null
-                          : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )
-                        }
-                      </th>
-                    ))
-                  }
-                </tr>
-              ))
-            }
-          </thead>
-          <tbody>
-            {
-              table.getRowModel().rows.map( row =>(
-                <tr key={row.id}>
-                  {
-                    row.getVisibleCells().map( cell => (
-                      <td key={cell.id}>
-                        {
-                          flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )
-                        }
-                      </td>
-                    ))
-                  }
-                </tr>
-              ))
-            }
-          </tbody>
-        </Table>
+          <div>
+            <Table>
+              <thead>
+                {
+                  table.getHeaderGroups().map( headerGroup => (
+                    <tr key={headerGroup.id}>
+                      {
+                        headerGroup.headers.map( header => (
+                          <th key={header.id}>
+                            {
+                              header.isPlaceholder
+                              ? null
+                              : flexRender(
+                                header.column.columnDef.header,
+                                header.getContext()
+                              )
+                            }
+                          </th>
+                        ))
+                      }
+                    </tr>
+                  ))
+                }
+              </thead>
+              <tbody>
+                {
+                  table.getRowModel().rows.map( row =>(
+                    <tr key={row.id}>
+                      {
+                        row.getVisibleCells().map( cell => (
+                          <td key={cell.id}>
+                            {
+                              flexRender(
+                                cell.column.columnDef.cell,
+                                cell.getContext()
+                              )
+                            }
+                          </td>
+                        ))
+                      }
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </Table>
+            <div className='report-control-panel'>
+              <button onClick={ () => table.setPageIndex( 0 ) }>
+                  First Page
+              </button>
+              <button onClick={ () => table.previousPage() }>
+                  Previous Page
+              </button>
+              <button onClick={ () => table.nextPage() }>
+                  Next Page
+              </button>
+              <button onClick={ () => table.setPageIndex( table.getPageCount() - 1 ) }>
+                  Last Page
+              </button>
+            </div>
+
+          </div>
       :
         <div className="ctn-table-placeholder">
             <div className="tbl-placeholder">
