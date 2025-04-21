@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authSlice, broadcastMessageSlice } from './';
+import { authSlice, broadcastMessageSlice, adminSlice } from './';
 
 export const store = configureStore({
     reducer: {
         broadcastMessage: broadcastMessageSlice.reducer,
         auth: authSlice.reducer,
-        
+        admin: adminSlice.reducer
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware({
         serializableCheck: false

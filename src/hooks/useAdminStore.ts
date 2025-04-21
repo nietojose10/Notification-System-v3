@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { nsApi } from '../api';
 import Swal from 'sweetalert2';
-import { onClearSavingUser, onLoadCategoriesUser, onLoadChannelsUser, onSavingUser, IRootState } from '../store';
+import { onClearSavingUser, onLoadCategoriesUser, onLoadChannelsUser, onSavingUser, IRootState, onLoadUsers, onEnableAdminForm, onDisableAdminForm } from '../store';
 
 const Toast = Swal.mixin({
     toast: true,
@@ -27,6 +27,7 @@ export const useAdminStore = () => {
     
     const dispatch = useDispatch();
     const { isSaving, categories, channels } = useSelector( (state: IRootState) => state.auth );
+    const { users, adminFormStatus } = useSelector( (state: IRootState) => state.admin );
 
     const startSavingUser = async({ name, email, phoneNumber, subscribed, channels }: SavingUserProps ) => {
         
@@ -36,7 +37,7 @@ export const useAdminStore = () => {
             await nsApi.post('/auth/register',{ name, email, phoneNumber, subscribed, channels });
             
             await Toast.fire({ icon: 'success', title: 'User Successfully created.' });
-            // dispatch( onClearSavingUser() );
+            dispatch( onClearSavingUser() );
         } catch (error) {
             console.log(error);
             await Toast.fire({ icon: 'error', title: 'User could not be created.' });
@@ -69,14 +70,48 @@ export const useAdminStore = () => {
         }
     }
 
+    const getUsersInfo = async() => {
+        try {
+            
+            const { data } = await nsApi.get('/admin/getUsers');
+            // console.log(data);
+            dispatch( onLoadUsers( data ) );
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const enableAdminForm = () => {
+        
+        dispatch( onEnableAdminForm() );
+
+    }
+
+    const disableAdminForm = () => {
+        
+        dispatch( onDisableAdminForm() );
+
+    }
+
+    // const clearSaving = () => {
+
+    //     dispatch( onClearSavingAdmin() );
+    // }
+
     return {
     //*Properties
         isSaving,
         categories,
         channels,
+        users,
+        adminFormStatus,
     //*Methods
         startSavingUser,
         startLoadingCategories,
-        startLoadingChannels
+        startLoadingChannels,
+        getUsersInfo,
+        enableAdminForm,
+        disableAdminForm
     }
 }

@@ -26,11 +26,20 @@ export interface LogHistory {
 }
 
 export interface LogHistoryReport {
-  id?: number,
+  id?: string,
   typeMessage: MessageType,
   channel: NotificationType,
   creationDate: string,
   userName: string,
   email: string,
   phoneNumber: string
+}
+
+export interface AdminReportInterface {
+    id?: string,
+    name: string,
+    email: string,
+    phoneNumber: string,
+    subscribed: string,
+    channels: string
 }

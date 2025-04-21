@@ -54,7 +54,7 @@ export const AdminForm = () => {
             onInputChange, isFormValid
         } = useForm( formFields, formValidations );
     const [formSubmitted, setFormSubmitted] = useState(false);
-    const { startSavingUser, isSaving, startLoadingCategories, categories, startLoadingChannels, channels } = useAdminStore();
+    const { startSavingUser, isSaving, startLoadingCategories, categories, startLoadingChannels, channels, adminFormStatus, disableAdminForm } = useAdminStore();
     const navigate = useNavigate();
     const [messageTypesSelect, setMessageTypesSelect] = useState<MultiValue<OptionType>>([]);
     const [notificationTypesSelect, setNotificationTypesSelect] = useState<MultiValue<OptionType>>([]);
@@ -103,8 +103,12 @@ export const AdminForm = () => {
         navigate('/');
     }
 
+    const handleDisableForm = () => {
+        disableAdminForm();
+    }
+
   return (
-    <div className="ctn-admin-form" style={{ cursor: isSaving ? 'wait' : '' }}>
+    <div className="ctn-admin-form" style={{ cursor: isSaving ? 'wait' : '', display: (!adminFormStatus) ? 'none' : 'block'  }}>
           <Row className="align-item-center">
               <Col>
                   <div className="title-form"><FontAwesomeIcon icon={faGears} size="2xl" style={{ color: "#BE7B72"}} /></div>
@@ -218,7 +222,18 @@ export const AdminForm = () => {
                 </Form.Group>
             </Row>
             <Row className="ctn-admin-user-buttons">
-                <Col lg={8} md={12} sm={12} >
+                <Col lg={4} md={12} sm={12} >
+                    <Button
+                    aria-label="btn-cancel"
+                    disabled={isSaving}
+                    type="button"
+                    className="btn-custom-primary"
+                    onClick={handleDisableForm}
+                    >
+                    Cancel                    
+                    </Button>        
+                </Col>
+                <Col lg={4} md={12} sm={12} >
                     <Button
                     aria-label="btn-save"
                     disabled={isSaving}

@@ -4,14 +4,14 @@ import { createColumnHelper, flexRender, getCoreRowModel, getPaginationRowModel,
 import { useLogHistoryStore } from '../../hooks';
 // import { format } from 'date-fns';
 import { LogHistoryReport } from '../../interfaces/interfaces';
-import { Placeholder, Table, Row } from 'react-bootstrap';
+import { Placeholder, Table, Row, Pagination } from 'react-bootstrap';
 
 export const MessagesReport = () => {
 
     const { startLoadingLogHistory, logHistory, fromLogHistoryToReport } = useLogHistoryStore();
     const placeHoldersCells = Array.from({ length: 12 });
     const [sorting, setSorting] = useState<SortingState>([]);
-
+  
     useEffect(() => {
       startLoadingLogHistory();
     }, []);
@@ -62,7 +62,7 @@ export const MessagesReport = () => {
         ( logHistory )
         ? 
           <div>
-            <Table>
+            <Table className="custom-table">
               <thead>
                 {
                   table.getHeaderGroups().map( headerGroup => (
@@ -106,7 +106,8 @@ export const MessagesReport = () => {
                 }
               </tbody>
             </Table>
-            <div className='report-control-panel'>
+            {/* <div className='report-control-panel'>
+
               <button onClick={ () => table.setPageIndex( 0 ) }>
                   First Page
               </button>
@@ -119,8 +120,13 @@ export const MessagesReport = () => {
               <button onClick={ () => table.setPageIndex( table.getPageCount() - 1 ) }>
                   Last Page
               </button>
-            </div>
-
+            </div> */}
+            <Pagination>
+              <Pagination.First onClick={ () => table.setPageIndex( 0 ) } />
+              <Pagination.Prev onClick={ () => table.previousPage() } />
+              <Pagination.Next onClick={ () => table.nextPage() } />
+              <Pagination.Last onClick={ () => table.setPageIndex( table.getPageCount() - 1 ) } />
+            </Pagination>
           </div>
       :
         <div className="ctn-table-placeholder">

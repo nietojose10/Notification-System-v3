@@ -24,3 +24,65 @@
 .ctn-admin-form .fa-2xl {
 font-size: 4rem;
 }
+
+.ctn-admin-table {
+    padding: 0.5rem 2rem;
+}
+
+.ctn-admin-report .ctn-table-placeholder .tbl-placeholder .thead-placeholder  {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ctn-admin-report .ctn-table-placeholder .tbl-placeholder .tbody-placeholder .row {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.ctn-admin-report {
+    background-color: white;
+    overflow: auto;
+    margin-bottom: 1rem;
+}
+
+.ctn-admin-report .ctn-create-user {
+    display: flex;
+    justify-content: end;
+}
+
+.ctn-admin-report .ctn-create-user .btn-create-user {
+    border: none!important;
+    border-radius: 5px;
+    background-color: #824d74;
+    color: white;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 1rem;
+}
+
+.ctn-admin-report .ctn-create-user .btn-create-user:focus {
+    background-color: #824d74;
+    color: white;
+}
+
+.ctn-admin-report .ctn-table-placeholder .tbl-placeholder .thead-placeholder  {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.ctn-admin-report .ctn-table-placeholder .tbl-placeholder .tbody-placeholder .row {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+@media screen and (max-width: 800px) {
+
+    /* Layout */
+    .ctn-admin-user-buttons .btn-custom-primary {
+        margin-bottom: 1rem;
+    }
+}

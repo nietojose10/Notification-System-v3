@@ -114,15 +114,15 @@ export const BroadcastForm = () => {
             </Form.Group>
             </Row>
             <Row className="ctn-broadcast-buttons">
-            <Col lg={8} md={12} sm={12} >
-                <Button
-                disabled={isSaving}
-                type="submit"
-                className="btn-custom-primary"
-                >
-                Send                    
-                </Button>        
-            </Col>
+              <Col lg={8} md={12} sm={12} >
+                  <Button
+                  disabled={isSaving}
+                  type="submit"
+                  className="btn-custom-primary"
+                  >
+                  Send                    
+                  </Button>        
+              </Col>
             </Row>
         </Form>
     </div>  

@@ -6,6 +6,7 @@ export * from './pages/NotificationHome';
 export * from './components/CardHome';
 export * from './components/AdminForm';
 export * from './components/BroadcastForm';
+export * from './components/AdminReport';
 
 export * from './routes/NotificationAdminRoutes';
 
