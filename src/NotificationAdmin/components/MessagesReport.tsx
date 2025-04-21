@@ -50,11 +50,7 @@ export const MessagesReport = () => {
         sorting
       },
       onSortingChange: setSorting,
-    });
-
-    // useEffect(() => {
-    //   console.log("Table has changed");
-    // }, [table])    
+    });  
     
   return (
     <div className="ctn-messages-report">
@@ -106,21 +102,6 @@ export const MessagesReport = () => {
                 }
               </tbody>
             </Table>
-            {/* <div className='report-control-panel'>
-
-              <button onClick={ () => table.setPageIndex( 0 ) }>
-                  First Page
-              </button>
-              <button onClick={ () => table.previousPage() }>
-                  Previous Page
-              </button>
-              <button onClick={ () => table.nextPage() }>
-                  Next Page
-              </button>
-              <button onClick={ () => table.setPageIndex( table.getPageCount() - 1 ) }>
-                  Last Page
-              </button>
-            </div> */}
             <Pagination>
               <Pagination.First onClick={ () => table.setPageIndex( 0 ) } />
               <Pagination.Prev onClick={ () => table.previousPage() } />

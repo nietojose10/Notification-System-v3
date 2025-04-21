@@ -31,13 +31,13 @@ export const useAdminStore = () => {
 
     const startSavingUser = async({ name, email, phoneNumber, subscribed, channels }: SavingUserProps ) => {
         
-        console.log('Calling startSavingUser');
         try {
+
             dispatch( onSavingUser() );
             await nsApi.post('/auth/register',{ name, email, phoneNumber, subscribed, channels });
-            
             await Toast.fire({ icon: 'success', title: 'User Successfully created.' });
             dispatch( onClearSavingUser() );
+            
         } catch (error) {
             console.log(error);
             await Toast.fire({ icon: 'error', title: 'User could not be created.' });
@@ -51,7 +51,6 @@ export const useAdminStore = () => {
         try {
             
             const { data } = await nsApi.get('/admin/getMessageTypes');
-            console.log(data);
             dispatch( onLoadCategoriesUser( data ) ); 
 
         } catch (error) {
@@ -74,7 +73,6 @@ export const useAdminStore = () => {
         try {
             
             const { data } = await nsApi.get('/admin/getUsers');
-            // console.log(data);
             dispatch( onLoadUsers( data ) );
 
         } catch (error) {
@@ -93,11 +91,6 @@ export const useAdminStore = () => {
         dispatch( onDisableAdminForm() );
 
     }
-
-    // const clearSaving = () => {
-
-    //     dispatch( onClearSavingAdmin() );
-    // }
 
     return {
     //*Properties

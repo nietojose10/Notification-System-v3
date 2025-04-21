@@ -1,18 +1,17 @@
 import { Col, Container, Row } from 'react-bootstrap';
 import { NotificationLayout, AdminForm, AdminReport } from '../';
-import '../nsAdmin.css';
 import { useAdminStore } from '../../hooks';
 import { useEffect } from 'react';
+import '../nsAdmin.css';
 
 export const NSAdmin = () => {
 
   const { disableAdminForm } = useAdminStore();
 
-  // useEffect(() => {
-  //   disableAdminForm();
-  // }, []);
+  useEffect(() => {
+    disableAdminForm();
+  }, []);
   
-
   return (
     <NotificationLayout>
       <Container>

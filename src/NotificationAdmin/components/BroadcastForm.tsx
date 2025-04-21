@@ -32,30 +32,19 @@ export const BroadcastForm = () => {
     const { category, message, categoryValid, messageValid, formState, onInputChange, isFormValid, onSelectChange } = useForm( formFields, formValidations );
     const [formSubmitted, setFormSubmitted] = useState(false);
     const { startSendingMessage, isSaving, startLoadingCategories, categories } = useBroadcastMessageStore();
-    // const navigate = useNavigate();
 
     useEffect(() => {
         startLoadingCategories();
     }, []);
     
-    // const handleSelectChange = async( { target }: ChangeEvent<HTMLSelectElement> ) => {
-
-    //     const { name, value } = target;
-    //     console.log(category);
-    //     setSelectCategories({
-    //         ...selectCategories,
-    //         [name]: value
-    //     });
-
-    // }
 
     const handleSubmit = async( e: FormEvent<HTMLFormElement> ) => {
       e.preventDefault();
       setFormSubmitted(true);
       if (!isFormValid) return;
-      // console.log(formState);
+
       await startSendingMessage(formState);
-      // navigate('/');
+
     }
 
   return (

@@ -40,7 +40,6 @@ export const useForm = <T extends FormStateProp>( initialForm: T , initialValida
     const onSelectChange = ( { target }: ChangeEvent<HTMLSelectElement> ) => {
 
         const { name, value } = target;
-        console.log({ name, value });
         setFormState({
             ...formState,
             [name]: value
