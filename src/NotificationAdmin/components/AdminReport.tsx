@@ -7,9 +7,6 @@ import { useAdminStore } from '../../hooks';
 const columnHelper = createColumnHelper<AdminReportInterface>();
 
 const columns = [
-    // columnHelper.accessor('name', {
-    //     header: 'Name'
-    // }),
     columnHelper.accessor( row => row.name, {
         id: 'name',
         header: () => 'Name',

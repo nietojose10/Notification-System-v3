@@ -13,7 +13,6 @@ export const useLogHistoryStore = () => {
         try {
             
             const { data } = await nsApi.get('/LogHistory/getLogHistory');
-            console.log(data);
             dispatch( onLoadLogHistory(data) );
 
         } catch (error) {
@@ -24,7 +23,6 @@ export const useLogHistoryStore = () => {
 
     const fromLogHistoryToReport = ( array: LogHistory[] ): LogHistoryReport[] => {
       
-      console.log(array);
       const dataReport = array.map( (data) => {
         const { typeMessage, channel, user, creationDate } = data;
         return { typeMessage, channel, creationDate, userName: user?.name ?? '', email: user?.email ?? '', phoneNumber: user?.phoneNumber ?? ''  }

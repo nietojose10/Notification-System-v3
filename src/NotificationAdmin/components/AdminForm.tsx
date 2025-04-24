@@ -36,18 +36,6 @@ const formValidations = [
       }
   ];
 
-// const categoriesOptions = [
-//     { value: 'sports', label: 'Sports' },
-//     { value: 'finance', label: 'Finance' },
-//     { value: 'movies', label: 'Movies' }
-// ];
-
-// const notificationTypes = [
-//     { value: 'sms', label: 'SMS' },
-//     { value: 'email', label: 'Email' },
-//     { value: 'push notification', label: 'Push Notification' }
-// ];
-
 export const AdminForm = () => {
 
     const { username, email, phoneNumber, usernameValid, emailValid, phoneNumberValid, 
@@ -58,18 +46,6 @@ export const AdminForm = () => {
     const navigate = useNavigate();
     const [messageTypesSelect, setMessageTypesSelect] = useState<MultiValue<OptionType>>([]);
     const [notificationTypesSelect, setNotificationTypesSelect] = useState<MultiValue<OptionType>>([]);
-
-    // const [formValues, setFormValues] = useState({
-    //     categories: [],
-    //     channels: [],
-    // });
-
-    // const onSelectChange = ( value, changing ) => {
-    //     setFormValues({ 
-    //         ...formValues, 
-    //         [changing]: value
-    //         });
-    // }
 
     const handleMessageTypesChange = ( options: MultiValue<OptionType> ) => {
         setMessageTypesSelect( options );
@@ -193,9 +169,6 @@ export const AdminForm = () => {
                             categories.map( ({ messageType}) => (
                                 { value: messageType.toLowerCase(), label: messageType.charAt(0).toUpperCase() + messageType.substring(1) }
                             ))
-                            // categoriesOptions.map( data => (
-                            //     { value: data.value, label: data.label }
-                            // ))
                         }
                         placeholder="Select the subscriptions"
                     />
@@ -213,9 +186,6 @@ export const AdminForm = () => {
                             channels.map( ({ notificationType }) => (
                                 { value: notificationType.toLowerCase(), label: notificationType.charAt(0).toUpperCase() + notificationType.substring(1) }
                             ))
-                            // notificationTypes.map( data => (
-                            //     { value: data.value, label: data.label }
-                            // ))
                         }
                         placeholder="Select the notification types"
                     />

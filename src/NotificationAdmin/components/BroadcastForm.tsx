@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTowerBroadcast } from '@fortawesome/free-solid-svg-icons';
 import { FormEvent, useEffect, useState } from 'react';
 import { useForm, useBroadcastMessageStore } from '../../hooks';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const formFields = {
     category: '',
@@ -32,6 +32,7 @@ export const BroadcastForm = () => {
     const { category, message, categoryValid, messageValid, formState, onInputChange, isFormValid, onSelectChange } = useForm( formFields, formValidations );
     const [formSubmitted, setFormSubmitted] = useState(false);
     const { startSendingMessage, isSaving, startLoadingCategories, categories } = useBroadcastMessageStore();
+    const navigate = useNavigate();
 
     useEffect(() => {
         startLoadingCategories();
@@ -44,7 +45,7 @@ export const BroadcastForm = () => {
       if (!isFormValid) return;
 
       await startSendingMessage(formState);
-
+      navigate('/');
     }
 
   return (
